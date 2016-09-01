@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+import com.loopeer.app.android.loopeerworkingon.db.DbAdapter;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -115,8 +118,16 @@ public class DiaryAddActivity extends AppCompatActivity implements Callback {
             @Override
             public void run() {
                 if (response.code() == 200) {
-                    finish();
                     ToastUtils.showToast("提交成功");
+                    Gson gson = new Gson();
+                    try {
+                        Task task = gson.fromJson(response.body().string(), AutoValue_Task.class);
+                        DbAdapter.getInstance(DiaryAddActivity.this).insertTask(task);
+                        setResult(RESULT_OK);
+                        finish();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     try {
                         ToastUtils.showToast("提交失败" + response.body().string());
