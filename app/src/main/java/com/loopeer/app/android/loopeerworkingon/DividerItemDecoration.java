@@ -12,7 +12,7 @@ import android.view.View;
 
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
-    private static final float DEFAULT_DIVIDER_HEIGHT = 0.25F;
+    private static final float DEFAULT_DIVIDER_HEIGHT = 1F;
 
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
 
