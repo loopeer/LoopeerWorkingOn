@@ -1,0 +1,14 @@
+CREATE TABLE task (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  _id TEXT NOT NULL,
+  task TEXT,
+  created TEXT,
+  user TEXT,
+  company TEXT,
+  date INTEGER
+);
+
+select_all:
+SELECT *
+FROM task
+ORDER BY id DESC;
